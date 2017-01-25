@@ -1,0 +1,24 @@
+> db.users
+nodeauth.users
+> db.users.insert<{name:"Fernando Correia", username:"devuser1", password:"1234", email:"fernandocorreia316@gmail.com"}>;
+2017-01-25T01:14:27.509+0000 E QUERY    [main] SyntaxError: expected expression, got ';' @(shell):1:118
+> db.users.insert<{name:"Fernando Correia", username:"devuser1", password:"1234", email:"fernandocorreia316@gmail.com"}>
+...
+... db.users.find();
+false
+> db.users.insert<{name:"Fernando Correia", username:"devuser1", password:"1234", email:"fernandocorreia316@gmail.com"}>  db.users.find()
+false
+> db.users.insert({name:"Fernando Correia", username:"devuser1", password:"1234", email:"fernandocorreia316@gmail.com"});
+WriteResult({ "nInserted" : 1 })
+> db.users.insert({name:"Sandra Correia", username:"devuser2", password:"1234", email:"sandracorreia316@gmail.com"});
+WriteResult({ "nInserted" : 1 })
+> db.users.find();
+{ "_id" : ObjectId("5887fc51e5e4e0a1b816f3c2"), "name" : "Fernando Correia", "username" : "devuser1", "password" : "1234", "email" : "fernandocorreia316@gmail.com" }
+{ "_id" : ObjectId("5887fc72e5e4e0a1b816f3c3"), "name" : "Sandra Correia", "username" : "devuser2", "password" : "1234", "email" : "sandracorreia316@gmail.com" }
+> db.users.update({username:"devuser1"}, {$set:{email:"fernandoteste@gmail.com"}});
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.users.find():;
+2017-01-25T01:24:44.347+0000 E QUERY    [main] SyntaxError: missing ; before statement @(shell):1:15
+> db.users.find();
+{ "_id" : ObjectId("5887fc51e5e4e0a1b816f3c2"), "name" : "Fernando Correia", "username" : "devuser1", "password" : "1234", "email" : "fernandoteste@gmail.com" }
+{ "_id" : ObjectId("5887fc72e5e4e0a1b816f3c3"), "name" : "Sandra Correia", "username" : "devuser2", "password" : "1234", "email" : "sandracorreia316@gmail.com" }
